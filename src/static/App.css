@@ -132,6 +132,14 @@ a{
     top: 24px;
     right: 10px;
 }
+.svgLoading{
+  background-color: #ef002c;
+  color: #fff;
+  width: 100%;
+  font-weight:bold;
+  border-radius: 12px;
+  text-align: center;
+}
 @keyframes role{
   from{
     transform:rotate(0deg) ;
