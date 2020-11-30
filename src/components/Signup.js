@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import db from '../config/db'
 
 const Signup = () => {
   const [fname, setFname] = useState('')
@@ -8,11 +9,11 @@ const Signup = () => {
   const [tel, setTel] = useState('')
   const [passwd, setPasswd] = useState('')
   const [checkPasswd, setCheckpasswd] = useState('')
+  const [isProg, setIsProg] = useState(false)
   const [err, setErr] = useState(null)
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    const form = document.getElementById('mrof')
     if (fname === '' || lname === '') {
       setErr('Personale information should not be empty')
     }
@@ -21,7 +22,27 @@ const Signup = () => {
       console.log(passwd, checkPasswd)
     }
     else {
-      form.submit()
+      setIsProg(true)
+      db.auth()
+        .createUserWithEmailAndPassword(email, passwd)
+        .then((response) => {
+          const uid = response.user.uid;
+          const data = {
+            id: uid,
+            fname,
+            lname,
+            email,
+            passwd,
+            phoneNUmber: tel,
+          };
+          const usersRef = db.database().ref(`u/${uid}`);
+          usersRef
+            .set(data)
+        })
+        .catch((err) => {
+          setIsProg(false)
+          setErr(err.message);
+        });
     }
   }
   return (
@@ -101,7 +122,53 @@ const Signup = () => {
                 <Link to='/terms'>Terms & condition</Link> of weecho service</p>
               </div>
               <div className="input-group px-sm-1 px-md-3 my-2">
-                <input type="submit" onClick={handleSubmit} className="btn py-sm-3 py-md-3 register-btn mx-2" value="REGISTER For Free" />
+                {isProg ?
+                  <div className="svgLoading py-sm-2 py-md-2 mx-2">
+                    <svg width="45" height="45" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" stroke="#fff">
+                      <g fill="none" fill-rule="evenodd" transform="translate(1 1)" stroke-width="2">
+                        <circle cx="22" cy="22" r="6" stroke-opacity="0">
+                          <animate attributeName="r"
+                            begin="1.5s" dur="3s"
+                            values="6;22"
+                            calcMode="linear"
+                            repeatCount="indefinite" />
+                          <animate attributeName="stroke-opacity"
+                            begin="1.5s" dur="3s"
+                            values="1;0" calcMode="linear"
+                            repeatCount="indefinite" />
+                          <animate attributeName="stroke-width"
+                            begin="1.5s" dur="3s"
+                            values="2;0" calcMode="linear"
+                            repeatCount="indefinite" />
+                        </circle>
+                        <circle cx="22" cy="22" r="6" stroke-opacity="0">
+                          <animate attributeName="r"
+                            begin="3s" dur="3s"
+                            values="6;22"
+                            calcMode="linear"
+                            repeatCount="indefinite" />
+                          <animate attributeName="stroke-opacity"
+                            begin="3s" dur="3s"
+                            values="1;0" calcMode="linear"
+                            repeatCount="indefinite" />
+                          <animate attributeName="stroke-width"
+                            begin="3s" dur="3s"
+                            values="2;0" calcMode="linear"
+                            repeatCount="indefinite" />
+                        </circle>
+                        <circle cx="22" cy="22" r="8">
+                          <animate attributeName="r"
+                            begin="0s" dur="1.5s"
+                            values="6;1;2;3;4;5;6"
+                            calcMode="linear"
+                            repeatCount="indefinite" />
+                        </circle>
+                      </g>
+                    </svg>
+                  </div>
+                  :
+                  <input type="submit" onClick={handleSubmit} className="btn py-sm-3 py-md-3 register-btn mx-2" value="REGISTER For Free" />
+                }
               </div>
             </div>
           </form>
