@@ -6,6 +6,9 @@
 body{
   font-family: Gotham !important;
 }
+a{
+  color: #5f5fff;
+}
 #nav{
   height: 73px;
   align-items:center;
@@ -63,13 +66,7 @@ body{
   letter-spacing: 1px;
   cursor: pointer;
 }
-.left{
-  background-color: #f5ecff;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 35vw;
-}
+
 /* Nav Component */
 .nav-link{
   color: #1c1a27;
@@ -85,6 +82,56 @@ body{
   color: #5f5fff;
 }
 /* Nav Component */
+/* Register Component */
+.left{
+  background-color: #f5ecff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='560' height='1440' preserveAspectRatio='none' viewBox='0 0 560 1440'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1055%26quot%3b)' fill='none'%3e%3crect width='560' height='1440' x='0' y='0' fill='rgba(245%2c 236%2c 255%2c 1)'%3e%3c/rect%3e%3cpath d='M0%2c478.006C87.598%2c488.009%2c163.734%2c415.039%2c227.807%2c354.474C284.356%2c301.021%2c302.536%2c223.376%2c340.96%2c155.711C383.999%2c79.919%2c482.941%2c18.554%2c467.246%2c-67.18C451.417%2c-153.646%2c330.706%2c-170.412%2c269.678%2c-233.677C213.305%2c-292.116%2c194.535%2c-382.343%2c124.157%2c-422.841C45.891%2c-467.878%2c-51.032%2c-494.295%2c-137.395%2c-467.924C-223.554%2c-441.616%2c-270.195%2c-353.32%2c-328.48%2c-284.63C-386.124%2c-216.695%2c-460.366%2c-156.139%2c-476.325%2c-68.485C-492.484%2c20.267%2c-468.769%2c117.148%2c-414.79%2c189.428C-364.439%2c256.85%2c-265.731%2c257.946%2c-196.656%2c306.003C-123.69%2c356.767%2c-88.314%2c467.921%2c0%2c478.006' fill='%23c18aff'%3e%3c/path%3e%3cpath d='M560 1741.5819999999999C614.219 1725.983 663.4639999999999 1704.912 713.511 1678.868 768.88 1650.055 834.986 1633.5140000000001 868.662 1580.961 903.855 1526.04 899.7529999999999 1456.644 897.69 1391.448 895.4069999999999 1319.314 900.5899999999999 1240.255 856.082 1183.444 811.072 1125.992 732.158 1112.713 662.4300000000001 1091.157 591.727 1069.3 517.037 1031.599 447.58799999999997 1057.161 378.709 1082.513 342.986 1157.1109999999999 307.974 1221.618 278.542 1275.844 277.039 1337.22 262.974 1397.294 247.289 1464.285 207.74099999999999 1527.422 220.548 1595.023 234.77499999999998 1670.12 266.675 1756.937 336.847 1787.234 407.994 1817.952 485.526 1763.008 560 1741.5819999999999' fill='white'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1055'%3e%3crect width='560' height='1440' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+  width: 35vw;
+}
+.right{
+  position: absolute;
+  top: 0;
+  left: 35vw;
+  width: 65vw;
+}
+.R-brand{
+  color: #1c1a27;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+.controle-image{
+  background-image: url('./register.png');
+  background-size: 100% 100%;
+  position: absolute;
+  left: 70px;
+  align-self: center;
+  height: 500px;
+  width: 350px;
+}
+.input{
+  background-color: lightgrey;
+  color: #1c1a27;
+  border: none;
+  border-radius: 8px !important;
+}
+.input::placeholder{
+  color:#1c1a27
+}
+.register-btn{
+  background-color: #ef002c;
+  color: #fff;
+  width: 100%;
+  font-weight:bold;
+}
+/* Sign in Component */
+.register{
+  position: absolute;
+    top: 24px;
+    right: 10px;
+}
 @keyframes role{
   from{
     transform:rotate(0deg) ;
