@@ -10,7 +10,7 @@ const Nav = () => {
         <NavLink activeClassName="selected" className="nav-link" to="/about">About</NavLink>
         <NavLink activeClassName="selected" className="nav-link" to="/price">Pricing</NavLink>
       </div>
-      <a className="nav-link log-in" href="/sign-in">LOGIN</a>
+      <a className="nav-link log-in" href="/login">LOGIN</a>
     </nav>
   )
 }
