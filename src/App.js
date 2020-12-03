@@ -12,11 +12,11 @@ import PrivateRoute from './Private';
 import PublicRoute from './Public';
 
 function App() {
-  const [authenticated, setAuthenticated] = useState(true)
+  const [authenticated, setAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
-  const listenUser = () => {
+  const listenUser = async () => {
     const usersRef = db.database();
-    db.auth().onAuthStateChanged((user) => {
+    await db.auth().onAuthStateChanged((user) => {
       if (user) {
         usersRef
           .ref(`u/${user.uid}`)
@@ -42,8 +42,8 @@ function App() {
     <Router>
       <Switch>
         <PublicRoute authenticated={authenticated} path="/" component={Hero} exact></PublicRoute>
-        <PublicRoute authenticated={authenticated} path="/register" component={Register} exact></PublicRoute>
-        <PublicRoute authenticated={authenticated} path="/login" component={Login} exact></PublicRoute>
+        <Route path="/register" component={Register} exact></Route>
+        <Route path="/login" component={Login} exact></Route>
         <PublicRoute authenticated={authenticated} path="/reset-password" component={Reset} exact></PublicRoute>
         <PrivateRoute authenticated={authenticated} path="/user" component={User} exact></PrivateRoute>
         <Route path="*">
