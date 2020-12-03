@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import db from '../config/db'
 
 const Login = () => {
@@ -28,6 +28,7 @@ const Login = () => {
                 return;
               }
               setIsProg(false);
+              window.location = "/user"
             })
             .catch((err) => {
               setIsProg(false)
@@ -56,7 +57,7 @@ const Login = () => {
               {err}
             </div>
           </div>
-          <form action="/" method="POST" id="mrof">
+          <form action="/user" method="POST" id="mrof">
             <div>
               <div className="input-group px-sm-1 px-md-3 my-2">
                 <input
@@ -124,7 +125,7 @@ const Login = () => {
                     </svg>
                   </div>
                   :
-                  <input type="submit" onClick={handleSubmit} className="btn py-sm-3 py-md-3 register-btn mx-2" value="LOGIN" />
+                  <input type="submit" onClick={handleSubmit} className="btn py-sm-3 py-md-3  mx-2 register-btn" value="LOGIN" />
                 }
               </div>
               <h6 className="text-left px-sm-1 px-md-4 my-3">
