@@ -6,6 +6,7 @@ import NotFound from './components/NotFound'
 import Register from './screens/Sign-up'
 import Login from './screens/Sign-in'
 import User from './screens/User';
+import Reset from './screens/Resetpassword'
 import db from './config/db'
 import PrivateRoute from './Private';
 import PublicRoute from './Public';
@@ -13,7 +14,6 @@ import PublicRoute from './Public';
 function App() {
   const [authenticated, setAuthenticated] = useState(true)
   const [user, setUser] = useState(null)
-
   const listenUser = () => {
     const usersRef = db.database();
     db.auth().onAuthStateChanged((user) => {
@@ -37,30 +37,15 @@ function App() {
   }
   useEffect(() => {
     listenUser()
-  })
+  }, [authenticated])
   return (
     <Router>
       <Switch>
-        <PublicRoute
-          authenticated={authenticated}
-          exact path="/">
-          <Hero />
-        </PublicRoute>
-        <PublicRoute
-          authenticated={authenticated}
-          exact path="/register">
-          <Register />
-        </PublicRoute>
-        <PublicRoute
-          authenticated={authenticated}
-          exact path="/login">
-          <Login />
-        </PublicRoute>
-        <PrivateRoute
-          authenticated={authenticated}
-          exact path="/user">
-          <User />
-        </PrivateRoute>
+        <PublicRoute authenticated={authenticated} path="/" component={Hero} exact></PublicRoute>
+        <PublicRoute authenticated={authenticated} path="/register" component={Register} exact></PublicRoute>
+        <PublicRoute authenticated={authenticated} path="/login" component={Login} exact></PublicRoute>
+        <PublicRoute authenticated={authenticated} path="/reset-password" component={Reset} exact></PublicRoute>
+        <PrivateRoute authenticated={authenticated} path="/user" component={User} exact></PrivateRoute>
         <Route path="*">
           <NotFound />
         </Route>
