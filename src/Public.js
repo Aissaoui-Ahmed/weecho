@@ -7,7 +7,7 @@ function PublicRoute({ component: Component, authenticated, ...rest }) {
       {...rest}
       render={(props) => authenticated === false
         ? <Component {...props} />
-        : <Redirect to='/profile' />}
+        : <Redirect to='/user' />}
     />
   )
 }
