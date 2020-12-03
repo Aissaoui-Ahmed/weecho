@@ -2,7 +2,7 @@ import React from 'react'
 import LeftSide from '../components/LeftSide'
 import Signin from '../components/Signin'
 
-const Register = () => {
+const Login = () => {
   return (
     <>
       <div className="row">
@@ -12,4 +12,4 @@ const Register = () => {
     </>
   )
 }
-export default Register;
+export default Login;
