@@ -127,6 +127,9 @@ const Login = () => {
                   <input type="submit" onClick={handleSubmit} className="btn py-sm-3 py-md-3 register-btn mx-2" value="LOGIN" />
                 }
               </div>
+              <h6 className="text-left px-sm-1 px-md-4 my-3">
+                <Link to="/reset-password">Forget password ?</Link>
+              </h6>
             </div>
           </form>
         </div>
