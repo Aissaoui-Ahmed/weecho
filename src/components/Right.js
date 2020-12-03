@@ -6,24 +6,27 @@ const RightRestSide = () => {
   const [err, setErr] = useState(null)
   const [succes, setSucces] = useState(null)
   const [isProg, setIsProg] = useState(false)
-  console.log(succes)
   const SendResetPassword = () => {
     setIsProg(true)
     db.auth().sendPasswordResetEmail(email).then(() => {
-      setSucces('check your inbox')
+      setSucces('Done, Check your inbox')
       setErr(null)
       setIsProg(false)
-    }).catch((err) => {
-      setIsProg(false)
-      setSucces(null)
-      setErr(err.message)
-    });
+    })
+      .then(() => {
+        setTimeout(() => window.location = '/login', 3000)
+      })
+      .catch((err) => {
+        setIsProg(false)
+        setSucces(null)
+        setErr(err.message)
+      });
   }
   return (
     <div className="px-sm-1 py-3 p-md-3 col-md-9 offset-md-3 offset-lg-3 col-sm-12 col-lg-9 col-xl-9 vh-100">
       <div className="mt-5">
         <div className="mt-5 px-1 px-md-1 px-lg-3 px-xl-5">
-          <h2 className="px-3 mb-5"></h2>
+          <h2 className="px-3 mb-5">Forget password</h2>
           <div className="px-sm-2 px-md-4">
             <div className={err == null ? "d-none" : "alert alert-danger "} role="alert">
               {err}
