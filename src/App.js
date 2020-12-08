@@ -1,30 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import './static/App.css';
 import Hero from './screens/Hero'
-import NotFound from './components/NotFound'
 import Register from './screens/Sign-up'
 import Login from './screens/Sign-in'
 import User from './screens/User';
+import Profile from './screens/Profile';
 import Reset from './screens/Resetpassword'
 import db from './config/db'
-import PrivateRoute from './Private';
-import PublicRoute from './Public';
 
-function App() {
+const App = () => {
   const [authenticated, setAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
-  const listenUser = async () => {
+
+  const listenUser = () => {
     const usersRef = db.database();
-    await db.auth().onAuthStateChanged((user) => {
+    db.auth().onAuthStateChanged((user) => {
       if (user) {
         usersRef
           .ref(`u/${user.uid}`)
-          .once('value')
-          .then((snapshot) => {
-            const userData = snapshot.val();
+          .once('value', (snapshot) => {
+            setUser(snapshot.val())
             setAuthenticated(true)
-            setUser(userData)
           })
           .catch(() => {
             setAuthenticated(false)
@@ -38,17 +35,25 @@ function App() {
   useEffect(() => {
     listenUser()
   }, [authenticated])
+
   return (
     <Router>
+      {authenticated ? <Redirect to='/user' /> : <Redirect to='/' />}
       <Switch>
-        <PublicRoute authenticated={authenticated} path="/" component={Hero} exact></PublicRoute>
-        <Route path="/register" component={Register} exact></Route>
-        <Route path="/login" component={Login} exact></Route>
-        <PublicRoute authenticated={authenticated} path="/reset-password" component={Reset} exact></PublicRoute>
-        <PrivateRoute authenticated={authenticated} path="/user" component={User} exact></PrivateRoute>
-        <Route path="*">
-          <NotFound />
-        </Route>
+        {
+          authenticated ?
+            <>
+              <Route path="/user" component={User} exact></Route>
+              <Route path="/profile" component={Profile} exact></Route>
+            </>
+            :
+            <>
+              <Route path="/" component={Hero} exact></Route>
+              <Route path="/register" component={Register} exact></Route>
+              <Route path="/login" component={Login} exact></Route>
+              <Route path="/reset-password" component={Reset} exact></Route>
+            </>
+        }
       </Switch>
     </Router>
   );
