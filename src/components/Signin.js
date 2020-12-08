@@ -9,8 +9,7 @@ const Login = () => {
   const [err, setErr] = useState(null)
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-    if (email === '' && passwd === '') {
+    if (email === '' || passwd === '') {
       setErr('Fill the inputs ')
     }
     else {
@@ -23,10 +22,11 @@ const Login = () => {
           usersRef
             .once('value')
             .then((snapShot) => {
-              if (!snapShot.exists) {
+              if (snapShot.val() != null) {
                 setErr('User does not exist !');
-                return;
               }
+            })
+            .then(() => {
               setIsProg(false);
               window.location = "/user"
             })
@@ -40,13 +40,13 @@ const Login = () => {
           setErr(err.message);
         });
     }
-
+    event.preventDefault()
   }
   return (
     <div className="px-sm-1 py-3 p-md-3 col-md-9 offset-md-3 offset-lg-3 col-sm-12 col-lg-9 col-xl-9 vh-100">
       <div>
         <h6 className="text-right">Do not have an account?
-        <Link to="/register">Register</Link>
+        <Link to="/register"> Register</Link>
         </h6>
       </div>
       <div className="mt-5">

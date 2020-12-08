@@ -36,8 +36,9 @@ const Signup = () => {
             phoneNUmber: tel,
           };
           const usersRef = db.database().ref(`u/${uid}`);
-          usersRef
-            .set(data)
+          usersRef.set(data)
+            .then(() => window.location = '/user')
+          setIsProg(false)
         })
         .catch((err) => {
           setIsProg(false)
@@ -49,7 +50,7 @@ const Signup = () => {
     <div className="px-sm-1 py-3 p-md-3 col-md-9 offset-md-3 offset-lg-3 col-sm-12 col-lg-9 col-xl-9 vh-100">
       <div>
         <h6 className="text-right">Already have an account?
-        <Link to="/login">login</Link>
+        <Link to="/login"> login</Link>
         </h6>
       </div>
       <div className="pt-2 px-3">
