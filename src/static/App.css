@@ -1,10 +1,10 @@
 @font-face{
-  src:url('./GothaProReg.otf');
-  font-family:Gotham;
+  src:url('./Inter-Regular.ttf');
+  font-family:Inter;
   font-display: block;
 }
 body{
-  font-family: Gotham !important;
+  font-family: Inter !important;
 }
 a{
   color: #5f5fff;
@@ -19,29 +19,8 @@ a{
 #main{
   height: calc(100vh - 73px);
   position: relative;
+  
 }
-/* #main:before{
-  content: '';
-  height: 100px;
-  width: 100px;
-  background-color: #5f5fff;
-  position: absolute;
-  top: 73px;
-  left: -50px;
-  border-radius: 25%;
-  z-index: -1;
-}
-#main:after{
-  content: '';
-  height: 100px;
-  width: 100px;
-  background-color: #5f5fff;
-  position: absolute;
-  top: 250px;
-  left: 500px;
-  border-radius: 25%;
-  z-index: -1;
-} */
 #we-brand{
    background-color: #5f5fff;
    color: #fff;
@@ -49,7 +28,7 @@ a{
 #work{
   background-image: url('./work.png');
   height: 400px;
-  width: 422px;
+  width: 378px;
   background-size: 100% 100%;
 }
 .btn-register{
@@ -66,7 +45,9 @@ a{
   letter-spacing: 1px;
   cursor: pointer;
 }
-
+#main h1{
+  font-weight: bold;
+}
 /* Nav Component */
 .nav-link{
   color: #1c1a27;
@@ -112,13 +93,12 @@ a{
   width: 350px;
 }
 .input{
-  background-color: lightgrey;
-  color: #1c1a27;
-  border: none;
+  background-color: white;
+  border: 1px solid #ececec;
   border-radius: 8px !important;
 }
 .input::placeholder{
-  color:#1c1a27
+  color:grey
 }
 .register-btn{
   background-color: #ef002c;
@@ -140,6 +120,89 @@ a{
   font-weight:bold;
   border-radius: 12px;
   text-align: center;
+}
+/* USER ASIDE */
+aside{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 73px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1c1a27;
+}
+.image-user{
+  background: url('./user.png');
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  background-size: 100% 100%;
+}
+.logOut-image{
+  transform: rotate(-180deg);
+}
+.logOut-image svg{
+  height: 45px;
+  width: 45px;
+  fill: #fff;
+  transition: fill .1s linear;
+  cursor: pointer;
+}
+.logOut-image svg:hover{
+  fill: #ef002c;
+}
+/*DashBoard */
+.send-button{
+  width: 250px;
+  background-color: #5f5fff;
+  color: #fff;
+  align-self: flex-end;
+  font-weight: bold;
+  border: none;
+  border-radius:12px;
+}
+.quick-sender{
+  border: 1px solid #ececec;
+  background-color: #fff;
+  border-radius: 12px;
+}
+.qs-input{
+  width: 100% !important;
+}
+.pinned{
+  display: flex;
+  flex-direction: column;
+  flex-wrap:wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.pending{
+  overflow-x: hidden !important;
+}
+.file-devision{
+  border: 1px solid #ececec;
+  background-color: #fff;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px dashed #ccc;
+    display: inline-block !important;
+    height: 150px;
+    width: 150px;
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 6px 12px;
+    cursor: pointer;
 }
 @keyframes role{
   from{
